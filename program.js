@@ -1,25 +1,13 @@
 'use strict';
 
-var through = require('through');
-var split = require('split');
-var odd = true;
+var concat = require('concat-stream');
 
-function write (buf) {
-	var str = buf.toString()
-	if (!odd) { 
-		str = str.toUpperCase()
-	} else {
-		str = str.toLowerCase()
-	}
-	odd = !odd;
-	this.queue(str + '\n')
+function reverse(s){
+    return s.split("").reverse().join("");
 }
-function end () { 
-	this.queue(null)
-}
-
-var tr = through(write, end);
 
 process.stdin
-	.pipe(split())
-	.pipe(tr).pipe(process.stdout);
+	.pipe(concat(function (buf) {
+		var str = reverse(buf.toString())
+		console.log(str)
+	}))
