@@ -1,13 +1,18 @@
 'use strict';
 
-var concat = require('concat-stream');
+var http = require('http');
+var through = require('through')
 
-function reverse(s){
-    return s.split("").reverse().join("");
+function write (buf) { 
+	this.queue(buf.toString().toUpperCase()) 
 }
+function end () { this.queue(null) }
 
-process.stdin
-	.pipe(concat(function (buf) {
-		var str = reverse(buf.toString())
-		console.log(str)
-	}))
+var server = http.createServer(function (req, res) {
+    if (req.method === 'POST') {
+        req.pipe(through(write, end)).pipe(res);
+    }
+    res.end('beep boop\n');
+});
+
+server.listen(process.argv[2]);
