@@ -1,0 +1,24 @@
+{
+  "name": "streams-adventure",
+  "version": "0.0.1",
+  "description": "Our \"Answers\" of working through stream-adventure node school",
+  "main": "program.js",
+  "dependencies": {
+    "stream-adventure": "^2.5.1",
+    "through": "^2.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/stream-adventure verify program.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mediasuitenz/streams-adventure.git"
+  },
+  "author": "mediasuitenz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mediasuitenz/streams-adventure/issues"
+  },
+  "homepage": "https://github.com/mediasuitenz/streams-adventure"
+}
