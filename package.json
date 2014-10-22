@@ -6,7 +6,8 @@
   "dependencies": {
     "request": "^2.45.0",
     "stream-adventure": "^2.5.1",
-    "through": "^2.3.6"
+    "through": "^2.3.6",
+    "websocket-stream": "^1.0.2"
   },
   "devDependencies": {},
   "scripts": {
