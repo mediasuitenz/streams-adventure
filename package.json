@@ -4,6 +4,7 @@
   "description": "Our \"Answers\" of working through stream-adventure node school",
   "main": "program.js",
   "dependencies": {
+    "duplexer": "^0.1.1",
     "request": "^2.45.0",
     "stream-adventure": "^2.5.1",
     "through": "^2.3.6",

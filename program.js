@@ -1,16 +1,11 @@
 'use strict';
 
-var trumpet = require('trumpet');
-var through = require('through');
+var spawn = require('child_process').spawn;
+var duplexer = require('duplexer')
 
-var tr = trumpet();
-
-var stream = tr.select('.loud').createStream();
-
-var toUpper = through(function write(data) {
-  this.queue(data.toString().toUpperCase());
-})
-
-process.stdin.pipe(tr).pipe(process.stdout);
-
-stream.pipe(toUpper).pipe(stream);
+module.exports = function (cmd, args) {
+  // spawn the process and return a single stream
+  var child = spawn(cmd, args)
+  // joining together the stdin and stdout here
+  return duplexer(child.stdin, child.stdout)
+};
