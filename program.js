@@ -1,6 +1,16 @@
 'use strict';
 
-var ws = require('websocket-stream');
-var stream = ws('ws://localhost:8000');
+var trumpet = require('trumpet');
+var through = require('through');
 
-stream.pipe('hello\n').end();
+var tr = trumpet();
+
+var stream = tr.select('.loud').createStream();
+
+var toUpper = through(function write(data) {
+  this.queue(data.toString().toUpperCase());
+})
+
+process.stdin.pipe(tr).pipe(process.stdout);
+
+stream.pipe(toUpper).pipe(stream);
